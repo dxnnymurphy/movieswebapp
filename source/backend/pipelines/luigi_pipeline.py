@@ -205,15 +205,15 @@ class mySQLFlow(luigi.Task):
         df = spark.read.parquet(
             "/Users/dannymurphy/Documents/GitHub/movieswebapp/source/backend/pipelines/cleaned_films"
         )
-        # write to the mysql database
+        # write to the mysql database NB: server url, table, user and password will be specific to the server writing to
         df.write.format("jdbc").option(
             "url", "jdbc:mysql://localhost:3306/TestDB"
         ).option("driver", "com.mysql.jdbc.Driver").option("dbtable", "Films").option(
             "user", "root"
         ).option(
-            "password", "Queensmead11"
+            "password", "password"
         ).mode(
-            "overwrite"
+            "append"
         ).save()
 
 

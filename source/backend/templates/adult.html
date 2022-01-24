@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+
+   <h1>
+      Cleaned Films
+   </h1>
+
+   <hr />
+
+   <div class='filterscontainer'>
+      <h3>Filters:</h3>
+      <div class='filters'>
+         <div class="dropdown">
+            <button class="dropbtn">Audience</button>
+            <div class="dropdown-content">
+               <a href="/adult">Adult</a>
+               <a href="/non_adult">Non-Adult</a>
+            </div>
+         </div>
+
+         <div class="dropdown">
+            <button class="dropbtn">Runtime</button>
+            <div class="dropdown-content">
+               <a href="/overtwohours">> 2 hrs</a>
+               <a href="/onetotwohours">1-2 hrs</a>
+               <a href="/lessthananhour">> 1 hr</a>
+            </div>
+         </div>
+
+         <div class="dropdown">
+            <button class="dropbtn">American?</button>
+            <div class="dropdown-content">
+               <a href="/american">Yes</a>
+               <a href="/non-american">No</a>
+            </div>
+         </div>
+
+         <div class="dropdown">
+            <button class="dropbtn">Streaming Service</button>
+            <div class="dropdown-content">
+               <a href="/amazonprime">Amazon Prime</a>
+               <a href="/disneyplus">Disney Plus</a>
+               <a href="/netflix">Netflix</a>
+            </div>
+         </div>
+         <div class="reset">
+            <a href="{{ url_for('show_10') }}" class="
+            nav__link--anchor
+            reset">(Reset Filters)</a>
+         </div>
+      </div>
+   </div>
+
+
+
+   <table>
+      <thead>
+         <tr>
+            <th>Title</th>
+            <th>Director</th>
+            <th>airing_date</th>
+            <th>country</th>
+            <th>adult</th>
+            <th>american</th>
+            <th>streaming_service</th>
+            <th>runtime</th>
+         </tr>
+      </thead>
+
+      <tbody>
+         {% for film in Films %}
+         <tr>
+            <td>{{ film.title }}</td>
+            <td>{{ film.director }}</td>
+            <td>{{ film.airing_date }}</td>
+            <td>{{ film.country }}</td>
+            <td>{{ film.adult }}</td>
+            <td>{{ film.american }}</td>
+            <td>{{ film.streaming_service }}</td>
+            <td>{{ film.runtime }}</td>
+         </tr>
+         {% endfor %}
+      </tbody>
+   </table>
+
+
+</body>
+
+</html>
